@@ -15,15 +15,19 @@ def main(year, day, language):
 
     if not os.path.exists(codedir):
         os.system(f'mkdir {codedir}')
+        
     os.chdir(codedir)
-    os.system(f'aocd {year} {day} > input.txt')
+    if not os.path.isfile("input.txt"):
+        os.system(f'aocd {year} {day} > input.txt')
+
     if language == 'python':
         template = 'main.py'
     elif language == 'rust':
         template = 'main.rs'
     else:
         raise NotImplementedError(f'Only python and rust templates so far,')
-    os.system(f'cp {basedir}/templates/{template} ./')
+    if not os.path.isfile(template):
+        os.system(f'cp {basedir}/templates/{template} ./')
 
 if __name__ == '__main__':
     main()
