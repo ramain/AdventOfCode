@@ -1,8 +1,5 @@
 import os
 import click
-import click
-import os
-
 
 @click.command()
 @click.option('--year', type=int)
@@ -15,7 +12,7 @@ def main(year, day, language):
 
     if not os.path.exists(codedir):
         os.system(f'mkdir {codedir}')
-        
+
     os.chdir(codedir)
     if not os.path.isfile("input.txt"):
         os.system(f'aocd {year} {day} > input.txt')
