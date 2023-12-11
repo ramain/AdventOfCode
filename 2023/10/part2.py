@@ -51,7 +51,6 @@ s_directions = []
 for sm in smove:
     if grid[j+sm[0], i+sm[1]] in moves:
         i_move = np.argwhere(np.abs(sm)>0)[0][0]
-        print(i_move)
         move = grid[j+sm[0], i+sm[1]]
         if sm[i_move] == moves[move][i_move]:
             s_directions.append(sm)
@@ -64,7 +63,13 @@ length = []
 path = []
 path_ij = []
 
+# for visualization
+xpath = []
+ypath = []
+
 for k in range(100000):
+    xpath.append(i)
+    ypath.append(j)
     dir0 = dir
     print(dir, grid[j, i])
     path_ij.append([j, i])
@@ -79,12 +84,14 @@ for k in range(100000):
 
 Nmid = int(len(length)//2)
 letter = path[Nmid]
-print(letter, Nmid)
+print("part 1 solution:", letter, Nmid)
 
 
 
 # Part 2
 loop_enclosed = 0
+# for visualization
+vis = np.zeros(grid.shape)
 for j in range(grid.shape[0]):
     line = grid[j]
 
@@ -97,9 +104,13 @@ for j in range(grid.shape[0]):
                         count += 1
             if count % 2 == 1:
                 loop_enclosed += 1
+                vis[j, i] = 1
                 #print(line, grid[j, i])
 
-print(loop_enclosed)
+print("part 2 solution:", loop_enclosed
+
+if 0:
+    np.savez("vis.npz", vis=vis, xpath=xpath, ypath=ypath)
 
 # Can do something clever with floodfill, I feel this is almost working
 # Worked for test, but not on input
