@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 def expand_space(grid, empty_rows, empty_cols):
     N = grid.shape[0] + len(empty_rows)
@@ -85,5 +86,8 @@ for i,voidfactor in enumerate(void_factors):
     plt.scatter(galaxies_expanded[:,0], galaxies_expanded[:,1], marker='.', s=1, c='k')
     plt.xticks([])
     plt.yticks([])
-    plt.savefig(f"plots/plot_{i}.png")
+    plt.savefig(f"plot_{i:02}.png")
     plt.close()
+
+os.system("convert -delay 5 -loop 0 -duplicate 1,-2-1 plot*png expansion.gif")
+os.system("rm plot*png")
