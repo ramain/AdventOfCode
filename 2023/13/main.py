@@ -5,6 +5,7 @@ fname = "input.txt"
 infile = open(fname, "r")
 
 def find_symmetry(parray, horizontal=True, match=0):
+    # match value 0,1, for part1, part2
     N = parray.shape[0]
     for i in range(1,parray.shape[0]):
         len = min(i, N-i)
@@ -42,11 +43,13 @@ for pattern in patterns:
     parray[parray=='.'] = '0'
     parray = parray.astype(int)
 
+    # part1
     h = find_symmetry(parray, horizontal=True)
     v = find_symmetry(parray.T, horizontal=False)
     count += h
     count += v
 
+    #part2
     h = find_symmetry(parray, horizontal=True, match=1)
     v = find_symmetry(parray.T, horizontal=False, match=1)
     count_smudge += h
@@ -55,5 +58,5 @@ for pattern in patterns:
     if h+v == 0:
         print(parray)
 
-print(count)
-print(count_smudge)
+print("part 1: ", count)
+print("part 2: ", count_smudge)
