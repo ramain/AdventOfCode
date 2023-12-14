@@ -53,7 +53,7 @@ gridscore[gridscore != 1] = 0
 gridscore = gridscore * np.arange(1,grid.shape[0]+1)[::-1,None]
 
 print(gridscore)
-print(gridscore.sum())
+print("Part 1:",gridscore.sum())
 
 
 # Part 2
@@ -85,4 +85,4 @@ for i in range(1,Niters):
 
 # Compute final version
 i_final = (Niters-i_start) % i_repeat + i_start
-print(gridscores[i_final-1])
+print("Part 2:",gridscores[i_final-1])
